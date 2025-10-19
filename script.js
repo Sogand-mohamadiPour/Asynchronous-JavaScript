@@ -39,9 +39,11 @@ const countriesContainer = document.querySelector('.countries');
 // getCountryData('portugal');
 // getCountryData('usa');
 ///////////////////////////////////////////////////////////////////////////////////////////////
+
 //v2
 // Function to render a country card
 const renderCountry = function (data, className = '') {
+    // Take neccesary information from obj
     const language = Object.values(data.languages)[0];
     const currency = Object.values(data.currencies)[0];
 
