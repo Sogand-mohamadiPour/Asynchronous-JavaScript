@@ -43,11 +43,11 @@ const countriesContainer = document.querySelector('.countries');
 //v2
 // Function to render a country card
 const renderCountry = function (data, className = '') {
-    // Take neccesary information from obj
-    const language = Object.values(data.languages)[0];
-    const currency = Object.values(data.currencies)[0];
+  //     // Take neccesary information from obj
+  const language = Object.values(data.languages)[0];
+  const currency = Object.values(data.currencies)[0];
 
-    const html = `
+  const html = `
     <article class="country ${className}">
       <img class="country__img" src="${data.flags.png}" />
       <div class="country__data">
@@ -60,43 +60,61 @@ const renderCountry = function (data, className = '') {
     </article>
   `;
 
-    countriesContainer.insertAdjacentHTML('beforeend', html);
-    countriesContainer.style.opacity = 1;
+  countriesContainer.insertAdjacentHTML('beforeend', html);
+  countriesContainer.style.opacity = 1;
 };
 
 // Function to get country data from API
-const getCountryAndNeighbour = function (country) {
-    // Ajax call country 1
-    const request = new XMLHttpRequest();
-    request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
-    request.send();
+// const getCountryAndNeighbour = function (country) {
+// Ajax call country 1
+// const request = new XMLHttpRequest();
+// request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
+// request.send();
 
-    request.addEventListener('load', function () {
-        const [data] = JSON.parse(this.responseText);
-        console.log(data);
+// request.addEventListener('load', function () {
+//     const [data] = JSON.parse(this.responseText);
+//     console.log(data);
 
-        // Render country
-        renderCountry(data);
+// Render country
+// renderCountry(data);
 
-        //Get neighbour country (2)
-        const neighbour = data.borders?.[0];
+//Get neighbour country (2)
+// const neighbour = data.borders?.[0];
 
-        if (!neighbour) return;
+// if (!neighbour) return;
 
-        // Ajax call country 2
-        const request2 = new XMLHttpRequest();
-        request2.open('GET', `https://restcountries.com/v3.1/alpha/${neighbour}`);
-        request2.send();
+// Ajax call country 2
+//         const request2 = new XMLHttpRequest();
+//         request2.open('GET', `https://restcountries.com/v3.1/alpha/${neighbour}`);
+//         request2.send();
 
-        request2.addEventListener('load', function () {
-            const [data2] = JSON.parse(this.responseText);
-            console.log(data2);
+//         request2.addEventListener('load', function () {
+//             const [data2] = JSON.parse(this.responseText);
+//             console.log(data2);
 
-            renderCountry(data2, 'neighbour');
-        });
-    });
-};
+//             renderCountry(data2, 'neighbour');
+//         });
+//     });
+// };
 
 // Test with countries
-getCountryAndNeighbour('usa');
+// getCountryAndNeighbour('usa');
 
+
+// const request = new XMLHttpRequest();
+// request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
+// request.send();
+
+
+const request = fetch('https://restcountries.com/v3.1/name/portugal')
+console.log(request);
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`).then(function (response) {
+    console.log(response);
+    return response.json();
+  }).then(function (data) {
+    console.log(data);
+  });
+};
+getCountryData('portugal');
