@@ -43,7 +43,7 @@ const countriesContainer = document.querySelector('.countries');
 //v2
 // Function to render a country card
 const renderCountry = function (data, className = '') {
-  //     // Take neccesary information from obj
+  // Take neccesary information from obj
   const language = Object.values(data.languages)[0];
   const currency = Object.values(data.currencies)[0];
 
@@ -106,15 +106,25 @@ const renderCountry = function (data, className = '') {
 // request.send();
 
 
+// const request = fetch('https://restcountries.com/v3.1/name/portugal')
+// console.log(request);
+
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`).then(function (response) {
+//     console.log(response);
+//     return response.json();
+//   }).then(function (data) {
+//     console.log(data);
+//     renderCountry(data[0])
+//   });
+// };
+/////////////////////////////////////////////////
+// simplfied version
 const request = fetch('https://restcountries.com/v3.1/name/portugal')
-console.log(request);
 
 const getCountryData = function (country) {
-  fetch(`https://restcountries.com/v3.1/name/${country}`).then(function (response) {
-    console.log(response);
-    return response.json();
-  }).then(function (data) {
-    console.log(data);
-  });
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]));
 };
 getCountryData('portugal');
