@@ -262,5 +262,6 @@ wait(2).then(() =>  {
 }).then( () => console.log('I waited for 1 second'));
 
 
-
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 
