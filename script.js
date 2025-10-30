@@ -23,7 +23,7 @@ const renderCountry = function (data, className = '') {
   `;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  // countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 const renderError = function (msg) {
@@ -265,12 +265,29 @@ const renderError = function (msg) {
 // Promise.resolve('abc').then(x => console.log(x));
 // Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 
+// Async Await
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
 
+const whereAmI = async function () {
+  // Geolocation  
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
 
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json&auth=904460109414542997888x62139`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
 
-const whereAmI = async function(country){
- const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
- console.log(res);
+  // Country data
+  const countryName = encodeURIComponent(dataGeo.country || '');
+  const res = await fetch(`https://restcountries.com/v3.1/name/${countryName}`);
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
 }
-whereAmI('portugal');
+whereAmI();
 console.log('FIRST');
