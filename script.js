@@ -234,34 +234,43 @@ const renderError = function (msg) {
 // console.log('Test end');
 // //////////////////////
 
-const latteryPromis = new Promise(function (resolve, reject) {
-  console.log('Lattery draw is happening 🔮');
-  setTimeout(() => {
-    if (Math.random() >= 0.5) {
-      resolve('You WIN 💰');
-    }
-    else {
-      reject(new Error('You lost your money 💩'))
-    }
-  }, 2000)
-});
+// const latteryPromis = new Promise(function (resolve, reject) {
+//   console.log('Lattery draw is happening 🔮');
+//   setTimeout(() => {
+//     if (Math.random() >= 0.5) {
+//       resolve('You WIN 💰');
+//     }
+//     else {
+//       reject(new Error('You lost your money 💩'))
+//     }
+//   }, 2000)
+// });
 
-latteryPromis.then(res => console.log(res)).catch
-  (err => console.error(err));
+// latteryPromis.then(res => console.log(res)).catch
+//   (err => console.error(err));
 
 // promisifying setTimeout
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
-  });
-};
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
 
-wait(2).then(() =>  {
-  console.log('I waited for 2 seconds');
-  return wait(1);
-}).then( () => console.log('I waited for 1 second'));
+// wait(2).then(() =>  {
+//   console.log('I waited for 2 seconds');
+//   return wait(1);
+// }).then( () => console.log('I waited for 1 second'));
 
 
-Promise.resolve('abc').then(x => console.log(x));
-Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 
+
+
+
+const whereAmI = async function(country){
+ const res = await fetch(`https://restcountries.com/v3.1/name/${country}`);
+ console.log(res);
+}
+whereAmI('portugal');
+console.log('FIRST');
