@@ -17,7 +17,8 @@ You can explore and use them to understand how each async method works!
 1. Clone this repo  
    ```bash
    git clone https://github.com/Sogand-mohamadiPour/Asynchronous-JavaScript.git
-   cd Asynchronous-JavaScript ```
+   cd Asynchronous-JavaScript
+   ```
 2. Open `index.html` in your browser and check the console 👀
 
 ## 🛠️ Tech Stack  
