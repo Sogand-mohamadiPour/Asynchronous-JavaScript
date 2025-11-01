@@ -362,3 +362,20 @@ Promise.race([
 ])
   .then(res => console.log(res[0].capital))
   .catch(err => console.error(err));
+
+
+// Promise.allSettled
+
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('Error'),
+  Promise.resolve('Another success'),
+]).then(res => console.log(res));
+
+// Promise.any
+
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('Error'),
+  Promise.resolve('Another success'),
+]).then(res => console.log(res));
